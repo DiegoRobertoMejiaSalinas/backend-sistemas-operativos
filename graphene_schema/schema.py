@@ -1,0 +1,14 @@
+import graphene
+from graphene_django import DjangoObjectType
+
+from .queries import Query as SchemeQuery
+from .mutations import Mutation as SchemeMutation
+
+class Query(SchemeQuery, graphene.ObjectType):
+    pass
+
+class Mutation(SchemeMutation ,graphene.ObjectType):
+    pass
+
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
