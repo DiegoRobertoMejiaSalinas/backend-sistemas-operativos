@@ -7,9 +7,11 @@ class Query(graphene.ObjectType):
     # Crea Directorio como una lista Graphene que toma el DirectoryType como PLANTILLA
     directory = graphene.List(DirectoryType)
     directory_by_id= graphene.Field(DirectoryType, id= graphene.String(required=True))
+    directory_by_same_father= graphene.List(DirectoryType, id= graphene.String(required=True))
 
     file= graphene.List(FileType)
     file_by_id= graphene.Field(FileType, id= graphene.String(required=True))
+    file_by_same_father= graphene.List(FileType, id= graphene.String(required=True))
 
     role= graphene.List(RoleType)
     role_by_id= graphene.Field(RoleType, id= graphene.String(required=True))
@@ -28,12 +30,24 @@ class Query(graphene.ObjectType):
         except Directory.DoesNotExist:
             return None
 
+    def resolve_directory_by_same_father(root, info, id):
+        try:
+            return Directory.objects.filter(belongs_to= id).all()
+        except Directory.DoesNotExist:
+            return None
+
     def resolve_file(self, args):
         return File.objects.select_related("user", "belongs_to").all()
 
     def resolve_file_by_id(root, info, id):
         try:
             return File.objects.get(pk=id)
+        except File.DoesNotExist:
+            return None
+
+    def resolve_file_by_same_father(root, info, id):
+        try:
+            return File.objects.get(belongs_to= id)
         except File.DoesNotExist:
             return None
 

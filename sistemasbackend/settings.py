@@ -25,7 +25,7 @@ SECRET_KEY = 'i7n4aj1t$1j-&#u@e@j8$ebhiv66=(xxycu5h^i#ni+@37b=g5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles', "base", "graphene_django"
+    'django.contrib.staticfiles', "base", "graphene_django",
+    'corsheaders',
 ]
 
 GRAPHENE = {
@@ -51,7 +52,18 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+]
+
+CORS_ORIGIN_WHITELIST = (
+  'localhost:3000',
+  '127.0.0.1:3000'
+)
 
 ROOT_URLCONF = 'sistemasbackend.urls'
 
