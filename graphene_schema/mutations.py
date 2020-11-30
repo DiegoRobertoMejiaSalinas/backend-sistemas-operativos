@@ -132,13 +132,13 @@ class CreateDirectoryMutation(graphene.Mutation):
     @staticmethod
     def mutate(root, info, **kwargs):
         name = kwargs.get('directory').name.strip()
-        readable = kwargs.get('directory').readable
-        writable = kwargs.get('directory').writable
+        # readableRoot = kwargs.get('directory').readable
+        # writableRoot = kwargs.get('directory').writable
         user = None
         belongs_to = None
 
         dataTempUser = kwargs.get('directory').user
-        dataTempBelongsTo = kwargs.get('directory').belongs_to
+        dataTempBelongsTo = kwargs.get('directory').belongsTo
 
         if dataTempUser != '' and dataTempUser:
             user = User.objects.get(pk=dataTempUser)
@@ -147,7 +147,7 @@ class CreateDirectoryMutation(graphene.Mutation):
             belongs_to = Directory.objects.get(pk=dataTempBelongsTo)
 
         obj = Directory.objects.create(
-            name=name, readable=readable, writable=writable, user=user, belongs_to=belongs_to)
+            name=name,  user=user, belongs_to=belongs_to)
 
         return CreateDirectoryMutation(directory=obj)
 
@@ -162,13 +162,13 @@ class UpdateDirectoryMutation(graphene.Mutation):
     def mutate(root, info, **kwargs):
         id = kwargs.get('directory').id
         name = kwargs.get('directory').name.strip()
-        readable = kwargs.get('directory').readable
-        writable = kwargs.get('directory').writable
+        # readable = kwargs.get('directory').readable
+        # writable = kwargs.get('directory').writable
         user = None
         belongs_to = None
 
         dataTempUser = kwargs.get('directory').user
-        dataTempBelongsTo = kwargs.get('directory').belongs_to
+        dataTempBelongsTo = kwargs.get('directory').belongsTo
 
         if dataTempUser != '' and dataTempUser:
             user = User.objects.get(pk=dataTempUser)
@@ -179,8 +179,8 @@ class UpdateDirectoryMutation(graphene.Mutation):
         obj = Directory.objects.get(pk=id)
 
         obj.name = name
-        obj.readable = readable
-        obj.writable = writable
+        # obj.readable = readable
+        # obj.writable = writable
         obj.user= user
         obj.belongs_to = belongs_to
         obj.save()
@@ -214,28 +214,28 @@ class CreateFileMutation(graphene.Mutation):
     class Input:
         file = graphene.Argument(CreateFileInput)
 
-    file = graphene.Field(DirectoryType)
+    file = graphene.Field(FileType)
 
     @staticmethod
     def mutate(root, info, **kwargs):
         name = kwargs.get('file').name.strip()
-        readable = kwargs.get('file').readable
-        writable = kwargs.get('file').writable
-        content= kwargs.get('file').content.strip()
+        # readable = kwargs.get('file').readable
+        # writable = kwargs.get('file').writable
+        # content= kwargs.get('file').content.strip()
         user = None
         belongs_to = None
 
         dataTempUser = kwargs.get('file').user
-        dataTempBelongsTo = kwargs.get('file').belongs_to
+        dataTempBelongsTo = kwargs.get('file').belongsTo
 
         if dataTempUser != '' and dataTempUser:
             user = User.objects.get(pk=dataTempUser)
 
         if dataTempBelongsTo != '' and dataTempBelongsTo:
-            belongs_to = File.objects.get(pk=dataTempBelongsTo)
+            belongs_to = Directory.objects.get(pk=dataTempBelongsTo)
 
         obj = File.objects.create(
-            name=name, readable=readable, writable=writable, content=content, user=user, belongs_to=belongs_to)
+            name=name, user=user, belongs_to=belongs_to)
 
         return CreateFileMutation(file=obj)
 
@@ -250,14 +250,14 @@ class UpdateFileMutation(graphene.Mutation):
     def mutate(root, info, **kwargs):
         id = kwargs.get('file').id
         name = kwargs.get('file').name.strip()
-        readable = kwargs.get('file').readable
-        writable = kwargs.get('file').writable
+        # readable = kwargs.get('file').readable
+        # writable = kwargs.get('file').writable
         content= kwargs.get('file').content.strip()
         user = None
         belongs_to = None
 
         dataTempUser = kwargs.get('file').user
-        dataTempBelongsTo = kwargs.get('file').belongs_to
+        dataTempBelongsTo = kwargs.get('file').belongsTo
 
         if dataTempUser != '' and dataTempUser:
             user = User.objects.get(pk=dataTempUser)
@@ -269,8 +269,8 @@ class UpdateFileMutation(graphene.Mutation):
 
         obj.name = name
         obj.content= content
-        obj.readable = readable
-        obj.writable = writable
+        # obj.readable = readable
+        # obj.writable = writable
         obj.user= user
         obj.belongs_to = belongs_to
         obj.save()

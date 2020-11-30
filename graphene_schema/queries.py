@@ -47,7 +47,7 @@ class Query(graphene.ObjectType):
 
     def resolve_file_by_same_father(root, info, id):
         try:
-            return File.objects.get(belongs_to= id)
+            return File.objects.filter(belongs_to= id).all()
         except File.DoesNotExist:
             return None
 

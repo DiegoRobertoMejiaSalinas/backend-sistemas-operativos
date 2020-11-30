@@ -13,6 +13,7 @@ class Role(models.Model):
 class User(models.Model):
     name= models.CharField(max_length=60)
     role= models.ForeignKey(Role, related_name='fk_User_Role', on_delete=models.SET_NULL, null=True)
+    pasword= models.CharField(max_length=255, default='root')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -22,8 +23,12 @@ class User(models.Model):
 class Directory(models.Model):
     name= models.CharField(max_length=100)
     slug= models.CharField(max_length=120, null=True, blank=True)
-    readable= models.BooleanField(default=True)
-    writable= models.BooleanField(default=True)
+    readableRoot= models.BooleanField(default=True)
+    writableRoot= models.BooleanField(default=True)
+    readableUser= models.BooleanField(default=True)
+    writableUser= models.BooleanField(default=True)
+    readableGuest= models.BooleanField(default=True)
+    writableGuest= models.BooleanField(default=False)
     user= models.ForeignKey(User, related_name='fk_Directory_User', on_delete=models.SET_NULL, null=True, blank=True)
     belongs_to= models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -50,8 +55,12 @@ class Directory(models.Model):
 class File(models.Model):
     name= models.CharField(max_length=100)
     slug= models.CharField(max_length=1020, null=True, blank=True)
-    readable= models.BooleanField(default=True)
-    writable= models.BooleanField(default=True)
+    readableRoot= models.BooleanField(default=True)
+    writableRoot= models.BooleanField(default=True)
+    readableUser= models.BooleanField(default=True)
+    writableUser= models.BooleanField(default=True)
+    readableGuest= models.BooleanField(default=True)
+    writableGuest= models.BooleanField(default=False)
     content= models.TextField(null=True, blank=True)
     user= models.ForeignKey(User, related_name='fk_File_User', on_delete=models.SET_NULL, null=True)
     belongs_to= models.ForeignKey(Directory, related_name='fk_File_Directory', on_delete=models.CASCADE, null=True)

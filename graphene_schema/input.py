@@ -16,16 +16,16 @@ class CreateUserInput(graphene.InputObjectType):
 
 class CreateDirectoryInput(graphene.InputObjectType):
     name= graphene.String(required=True)
-    readable= graphene.Boolean(required=True)
-    writable= graphene.Boolean(required=True)
+    # readable= graphene.Boolean(required=True)
+    # writable= graphene.Boolean(required=True)
     user= graphene.String(required=True)
     belongsTo= graphene.String(required=True)
 
 class CreateFileInput(graphene.InputObjectType):
     name= graphene.String(required=True)
-    content= graphene.String(required=True)
-    readable= graphene.Boolean(required=True)
-    writable= graphene.Boolean(required=True)
+    # content= graphene.String(required=True)
+    # readable= graphene.Boolean(required=True)
+    # writable= graphene.Boolean(required=True)
     user= graphene.String(required=True)
     belongsTo= graphene.String(required=True)
 
