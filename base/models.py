@@ -34,6 +34,15 @@ class Directory(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def path_to_root_directory(directory_id):
+        if directory_id is None:
+            return []
+        directory = Directory.objects.get(pk=directory_id)
+        result = path_to_root_directory(directory.belongs_to)
+        result.append(category)
+        return result
+    
+
     def save(self, *args, **kwargs):
         slug = slugify(self.name)
 
@@ -49,7 +58,7 @@ class Directory(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return self.name + " "
 
 
 class File(models.Model):
