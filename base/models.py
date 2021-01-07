@@ -13,7 +13,7 @@ class Role(models.Model):
 class User(models.Model):
     name= models.CharField(max_length=60)
     role= models.ForeignKey(Role, related_name='fk_User_Role', on_delete=models.SET_NULL, null=True)
-    pasword= models.CharField(max_length=255, default='root')
+    password= models.CharField(max_length=255, default='root')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

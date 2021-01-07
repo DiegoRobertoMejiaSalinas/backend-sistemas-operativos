@@ -23,7 +23,7 @@ class CreateDirectoryInput(graphene.InputObjectType):
 
 class CreateFileInput(graphene.InputObjectType):
     name= graphene.String(required=True)
-    # content= graphene.String(required=True)
+    content= graphene.String(required=True)
     # readable= graphene.Boolean(required=True)
     # writable= graphene.Boolean(required=True)
     user= graphene.String(required=True)

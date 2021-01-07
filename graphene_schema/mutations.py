@@ -222,6 +222,7 @@ class CreateFileMutation(graphene.Mutation):
         # readable = kwargs.get('file').readable
         # writable = kwargs.get('file').writable
         # content= kwargs.get('file').content.strip()
+        content= kwargs.get('file').content.strip()
         user = None
         belongs_to = None
 
