@@ -16,16 +16,24 @@ class CreateUserInput(graphene.InputObjectType):
 
 class CreateDirectoryInput(graphene.InputObjectType):
     name= graphene.String(required=True)
-    # readable= graphene.Boolean(required=True)
-    # writable= graphene.Boolean(required=True)
+    readableRoot= graphene.Boolean(default=True)
+    writableRoot= graphene.Boolean(default=True)
+    readableUser= graphene.Boolean(default=True)
+    writableUser= graphene.Boolean(default=True)
+    readableGuest= graphene.Boolean(default=True)
+    writableGuest= graphene.Boolean(default=False)
     user= graphene.String(required=True)
     belongsTo= graphene.String(required=True)
 
 class CreateFileInput(graphene.InputObjectType):
     name= graphene.String(required=True)
     content= graphene.String(required=True)
-    # readable= graphene.Boolean(required=True)
-    # writable= graphene.Boolean(required=True)
+    readableRoot= graphene.Boolean(default=True)
+    writableRoot= graphene.Boolean(default=True)
+    readableUser= graphene.Boolean(default=True)
+    writableUser= graphene.Boolean(default=True)
+    readableGuest= graphene.Boolean(default=True)
+    writableGuest= graphene.Boolean(default=False)
     user= graphene.String(required=True)
     belongsTo= graphene.String(required=True)
 
@@ -43,8 +51,12 @@ class UpdateUserInput(graphene.InputObjectType):
 class UpdateDirectoryInput(graphene.InputObjectType):
     id= graphene.Int(required=True)
     name= graphene.String(required=True)
-    readable= graphene.Boolean(required=True)
-    writable= graphene.Boolean(required=True)
+    readableRoot= graphene.Boolean(default=True)
+    writableRoot= graphene.Boolean(default=True)
+    readableUser= graphene.Boolean(default=True)
+    writableUser= graphene.Boolean(default=True)
+    readableGuest= graphene.Boolean(default=True)
+    writableGuest= graphene.Boolean(default=False)
     user= graphene.String(required=True)
     belongsTo= graphene.String(required=True)
 
@@ -52,8 +64,12 @@ class UpdateFileInput(graphene.InputObjectType):
     id= graphene.Int(required=True)
     name= graphene.String(required=True)
     content= graphene.String(required=True)
-    readable= graphene.Boolean(required=True)
-    writable= graphene.Boolean(required=True)
+    readableRoot= graphene.Boolean(default=True)
+    writableRoot= graphene.Boolean(default=True)
+    readableUser= graphene.Boolean(default=True)
+    writableUser= graphene.Boolean(default=True)
+    readableGuest= graphene.Boolean(default=True)
+    writableGuest= graphene.Boolean(default=False)
     user= graphene.String(required=True)
     belongsTo= graphene.String(required=True)
 
