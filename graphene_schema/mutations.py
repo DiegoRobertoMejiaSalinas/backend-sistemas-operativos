@@ -236,7 +236,7 @@ class CreateFileMutation(graphene.Mutation):
             belongs_to = Directory.objects.get(pk=dataTempBelongsTo)
 
         obj = File.objects.create(
-            name=name, user=user, belongs_to=belongs_to)
+            name=name, user=user, belongs_to=belongs_to, content=content)
 
         return CreateFileMutation(file=obj)
 
