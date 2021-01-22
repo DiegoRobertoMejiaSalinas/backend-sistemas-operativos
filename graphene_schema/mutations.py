@@ -284,7 +284,7 @@ class UpdateFileMutation(graphene.Mutation):
             user = User.objects.get(pk=dataTempUser)
 
         if dataTempBelongsTo != '' and dataTempBelongsTo:
-            belongs_to = File.objects.get(pk=dataTempBelongsTo)
+            belongs_to = Directory.objects.get(pk=dataTempBelongsTo)
 
         obj = File.objects.get(pk=id)
 
