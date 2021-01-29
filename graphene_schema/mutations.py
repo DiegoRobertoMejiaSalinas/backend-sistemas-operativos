@@ -74,8 +74,9 @@ class CreateUserMutation(graphene.Mutation):
     def mutate(root, info, **kwargs):
         name = kwargs.get('user').name.strip()
         role = kwargs.get('user').role.strip()
+        password = kwargs.get('user').password.strip()
 
-        obj = User.objects.create(name=name)
+        obj = User.objects.create(name=name, role=role, password=password)
 
         return CreateUserMutation(category=obj)
 
@@ -91,11 +92,14 @@ class UpdateUserMutation(graphene.Mutation):
         id = kwargs.get('user').id
         name = kwargs.get('user').name.strip()
         role = kwargs.get('user').role.strip()
+        password = kwargs.get('user').password.strip()
+
 
         obj = User.objects.get(pk=id)
 
         obj.name = name
         obj.role = role
+        obj.password= password
 
         obj.save()
 

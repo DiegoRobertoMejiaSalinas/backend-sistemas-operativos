@@ -13,6 +13,7 @@ class CreateRoleInput(graphene.InputObjectType):
 class CreateUserInput(graphene.InputObjectType):
     name= graphene.String(required=True)
     role= graphene.String(required=True)
+    password= graphene.String(required=True)
 
 class CreateDirectoryInput(graphene.InputObjectType):
     name= graphene.String(required=True)
@@ -47,6 +48,8 @@ class UpdateUserInput(graphene.InputObjectType):
     id= graphene.Int(required=True)
     name= graphene.String(required=True)
     role= graphene.String(required=True)
+    password= graphene.String(required=True)
+
 
 class UpdateDirectoryInput(graphene.InputObjectType):
     id= graphene.Int(required=True)
