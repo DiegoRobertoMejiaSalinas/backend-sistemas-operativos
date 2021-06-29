@@ -94,7 +94,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'sistemaoperativo',
         'USER': 'root',
-        'PASSWORD': 'biconikdatabaseflexo',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': '3306'
     }
